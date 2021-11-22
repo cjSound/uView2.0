@@ -13,22 +13,22 @@ const getClassNames = (name) => ({
 })
 // #endif
 
-// #ifdef APP-NVUE
-// 引入nvue(weex)的animation动画模块，文档见：
-// https://weex.apache.org/zh/docs/modules/animation.html#transition
-const animation = uni.requireNativePlugin('animation')
-const getStyle = (name) => animationMap[name]
-// #endif
+// // #ifdef APP-NVUE
+// // 引入nvue(weex)的animation动画模块，文档见：
+// // https://weex.apache.org/zh/docs/modules/animation.html#transition
+// const animation = uni.requireNativePlugin('animation')
+// const getStyle = (name) => animationMap[name]
+// // #endif
 
 export default {
     methods: {
         // 组件被点击发出事件
-        clickHandler() {
+        clickHandler () {
             this.$emit('click')
         },
         // #ifndef APP-NVUE
         // vue版本的组件进场处理
-        vueEnter() {
+        vueEnter () {
             // 动画进入时的类名
             const classNames = getClassNames(this.mode)
             // 定义状态和发出动画进入前事件
@@ -47,7 +47,7 @@ export default {
             })
         },
         // 动画离场处理
-        vueLeave() {
+        vueLeave () {
             // 如果不是展示状态，无需执行逻辑
             if (!this.display) return
             const classNames = getClassNames(this.mode)
@@ -68,7 +68,7 @@ export default {
         // #endif
         // #ifdef APP-NVUE
         // nvue版本动画进场
-        nvueEnter() {
+        nvueEnter () {
             // 获得样式的名称
             const currentStyle = getStyle(this.mode)
             // 组件动画状态和发出事件
@@ -103,10 +103,10 @@ export default {
                             this.$emit('afterEnter')
                         })
                     })
-                    .catch(() => {})
+                    .catch(() => { })
             })
         },
-        nvueLeave() {
+        nvueLeave () {
             if (!this.display) {
                 return
             }
@@ -133,11 +133,11 @@ export default {
                         this.onTransitionEnd()
                     })
                 })
-                .catch(() => {})
+                .catch(() => { })
         },
         // #endif
         // 完成过渡后触发
-        onTransitionEnd() {
+        onTransitionEnd () {
             // 如果已经是结束的状态，无需再处理
             if (this.transitionEnded) return
             this.transitionEnded = true
