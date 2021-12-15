@@ -175,6 +175,11 @@ export default {
 		// 内容发生变化，进行处理
 		valueChange() {
 		    const value = this.innerValue;
+            if(this.maxlength !==-1){
+                if(this.innerValue.length>this.maxlength){
+                    return 
+                }
+            }
 		    this.$nextTick(() => {
 		        this.$emit("input", value);
 		        // 标识value值的变化是由内部引起的
