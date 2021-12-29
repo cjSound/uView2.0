@@ -174,10 +174,10 @@ export default {
         },
 		// 内容发生变化，进行处理
 		valueChange() {
-		    const value = this.innerValue;
+		    let value = this.innerValue;
             if(this.maxlength !==-1){
                 if(this.innerValue.length>this.maxlength){
-                    return 
+                    value =value.substring(0,100)
                 }
             }
 		    this.$nextTick(() => {
